@@ -16,6 +16,10 @@ line-length = 88
 [tool.ruff.lint]
 select = ["E", "F", "I", "S", "B", "C4", "UP"]
 
+[tool.ruff.lint.per-file-ignores]
+# S101 = assert (normal dans les tests pytest)
+"tests/**/*.py" = ["S101"]
+
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 pythonpath = ["src"]
