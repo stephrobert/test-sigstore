@@ -2,6 +2,7 @@
 
 [![CI](https://github.com/stephrobert/test-sigstore/actions/workflows/ci.yml/badge.svg)](https://github.com/stephrobert/test-sigstore/actions/workflows/ci.yml)
 [![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/stephrobert/test-sigstore/badge)](https://scorecard.dev/viewer/?uri=github.com/stephrobert/test-sigstore)
+[![SLSA Verification](https://github.com/stephrobert/test-sigstore/actions/workflows/verify-slsa.yml/badge.svg)](https://github.com/stephrobert/test-sigstore/actions/workflows/verify-slsa.yml)
 
 API Python de démonstration avec pipeline CI/CD hautement sécurisé.
 
