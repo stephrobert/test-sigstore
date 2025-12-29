@@ -1,0 +1,42 @@
+name: SLSA Verification
+
+on:
+  schedule:
+    # Vérifier toutes les nuits
+    - cron: '0 2 * * *'
+  workflow_dispatch:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install slsa-verifier
+        run: |
+          curl -LO https://github.com/slsa-framework/slsa-verifier/releases/latest/download/slsa-verifier-linux-amd64
+          chmod +x slsa-verifier-linux-amd64
+          sudo mv slsa-verifier-linux-amd64 /usr/local/bin/slsa-verifier
+
+      - name: Get latest release
+        id: latest
+        run: |
+          LATEST_TAG=$(gh release view --repo ${{ github.repository }} --json tagName -q .tagName)
+          echo "tag=$LATEST_TAG" >> $GITHUB_OUTPUT
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Verify SLSA
+        run: |
+          slsa-verifier verify-image ghcr.io/${{ github.repository }}:${{ steps.latest.outputs.tag }} \
+            --source-uri github.com/${{ github.repository }} \
+            --source-tag ${{ steps.latest.outputs.tag }} \
+            --print-provenance
+
+      - name: Report status
+        if: always()
+        run: |
+          if [ "${{ job.status }}" == "success" ]; then
+            echo "✅ SLSA verification passed for ${{ steps.latest.outputs.tag }}"
+          else
+            echo "❌ SLSA verification failed for ${{ steps.latest.outputs.tag }}"
+            exit 1
+          fi
