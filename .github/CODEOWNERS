@@ -1,0 +1,14 @@
+# Propriétaires par défaut pour tout le dépôt
+* @stephrobert
+
+# Sécurité : équipe sécurité doit approuver les workflows
+.github/workflows/ @stephrobert
+.github/CODEOWNERS @stephrobert
+
+# Configuration Docker
+Dockerfile @stephrobert
+.dockerignore @stephrobert
+
+# Dépendances : revue obligatoire
+requirements*.txt @stephrobert
+pyproject.toml @stephrobert
