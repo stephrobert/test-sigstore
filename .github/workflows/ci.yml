@@ -24,7 +24,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@0b93645e9fea7318ecaed2b359559ac225c90a2b # v5.3.0
         with:
-          python-version: "3.11"
+          python-version: "3.14"
 
       - name: Install Ruff
         run: pip install ruff
@@ -47,7 +47,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@0b93645e9fea7318ecaed2b359559ac225c90a2b # v5.3.0
         with:
-          python-version: "3.11"
+          python-version: "3.14"
 
       - name: Install dependencies
         run: |
@@ -75,7 +75,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@0b93645e9fea7318ecaed2b359559ac225c90a2b # v5.3.0
         with:
-          python-version: "3.11"
+          python-version: "3.14"
 
       - name: Install Bandit
         run: pip install bandit
@@ -102,7 +102,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@0b93645e9fea7318ecaed2b359559ac225c90a2b # v5.3.0
         with:
-          python-version: "3.11"
+          python-version: "3.14"
 
       - name: Install pip-audit
         run: pip install pip-audit
