@@ -5,12 +5,9 @@ on:
     tags:
       - "v*"
 
-# Permissions nécessaires pour SLSA et Sigstore
+# Permissions minimales au top-level
 permissions:
   contents: read
-  packages: write
-  id-token: write  # Requis pour Sigstore OIDC
-  attestations: write  # Requis pour GitHub Attestations
 
 env:
   REGISTRY: ghcr.io
@@ -23,6 +20,14 @@ jobs:
   build-and-push:
     name: Build, Attest & Push
     runs-on: ubuntu-latest
+
+    # Permissions spécifiques au job
+    permissions:
+      contents: read
+      packages: write          # Pour push vers GHCR
+      id-token: write          # Pour Sigstore OIDC
+      attestations: write      # Pour GitHub Attestations
+
     outputs:
       digest: ${{ steps.build.outputs.digest }}
       image: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
