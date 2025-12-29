@@ -16,7 +16,7 @@ jobs:
   # ===========================================================================
   lint:
     name: Lint (Ruff)
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - name: Checkout code
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
@@ -29,18 +29,17 @@ jobs:
       - name: Install Ruff
         run: pip install ruff
 
-      - name: Run Ruff linter
-        run: ruff check src/ tests/
-
       - name: Run Ruff formatter check
         run: ruff format --check src/ tests/
 
+      - name: Run Ruff linter
+        run: ruff check src/ tests/
   # ===========================================================================
   # Job 2 : Tests avec Pytest
   # ===========================================================================
   test:
     name: Test (Pytest)
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - name: Checkout code
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
@@ -59,17 +58,16 @@ jobs:
         run: pytest --cov=src/app --cov-report=xml
 
       - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@1e68e06f1dbfde0e4cefc87efeba9e4643565571 # v5.1.2
+        uses: codecov/codecov-action@7afa10ed9b269c561c2336fd862446844e0cbf71 # v5.0.2
         with:
           files: coverage.xml
           fail_ci_if_error: false
-
   # ===========================================================================
   # Job 3 : SAST avec Bandit
   # ===========================================================================
   sast:
     name: SAST (Bandit)
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - name: Checkout code
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
@@ -96,7 +94,7 @@ jobs:
   # ===========================================================================
   audit:
     name: Dependency Audit
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - name: Checkout code
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
@@ -117,7 +115,7 @@ jobs:
   # ===========================================================================
   build-check:
     name: Docker Build Check
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - name: Checkout code
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2

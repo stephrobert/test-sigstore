@@ -1,4 +1,5 @@
 """API de démonstration pour pipeline sécurisé."""
+
 from fastapi import FastAPI
 
 app = FastAPI(
