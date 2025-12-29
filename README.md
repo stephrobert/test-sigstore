@@ -1,7 +1,7 @@
 # Secure Python Pipeline
 
-[![CI](https://github.com/VOTRE_USER/secure-python-pipeline/actions/workflows/ci.yml/badge.svg)](https://github.com/stephrobert/secure-python-pipeline/actions/workflows/ci.yml)
-[![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/VOTRE_USER/secure-python-pipeline/badge)](https://scorecard.dev/viewer/?uri=github.com/stephrobert/secure-python-pipeline)
+[![CI](https://github.com/stephrobert/test-sigstore/actions/workflows/ci.yml/badge.svg)](https://github.com/stephrobert/test-sigstore/actions/workflows/ci.yml)
+[![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/stephrobert/test-sigstore/badge)](https://scorecard.dev/viewer/?uri=github.com/stephrobert/test-sigstore)
 
 API Python de démonstration avec pipeline CI/CD hautement sécurisé.
 
