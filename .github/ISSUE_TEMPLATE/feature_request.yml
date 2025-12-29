@@ -1,0 +1,36 @@
+name: "✨ Feature Request"
+description: "Proposer une nouvelle fonctionnalité"
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Merci de proposer une amélioration !
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: "Problème à résoudre"
+      description: "Quel problème cette fonctionnalité résoudrait-elle ?"
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: "Solution proposée"
+      description: "Décrivez votre idée de solution"
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: "Alternatives considérées"
+      description: "Avez-vous envisagé d'autres approches ?"
+
+  - type: textarea
+    id: context
+    attributes:
+      label: "Contexte additionnel"
+      description: "Captures d'écran, liens, exemples..."

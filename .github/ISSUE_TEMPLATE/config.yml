@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: "💬 Discussions"
+    url: https://github.com/VOTRE_USER/secure-python-pipeline/discussions
+    about: "Questions générales et discussions"
+  - name: "📖 Documentation"
+    url: https://github.com/VOTRE_USER/secure-python-pipeline#readme
+    about: "Consultez la documentation avant de poser une question"
