@@ -16,21 +16,26 @@ jobs:
           chmod +x slsa-verifier-linux-amd64
           sudo mv slsa-verifier-linux-amd64 /usr/local/bin/slsa-verifier
 
-      - name: Get latest release
+      - name: Get latest tag
         id: latest
         run: |
-          LATEST_TAG=$(gh release view --repo ${{ github.repository }} --json tagName -q .tagName)
+          LATEST_TAG=$(gh api repos/${{ github.repository }}/tags --jq '.[0].name')
           echo "tag=$LATEST_TAG" >> $GITHUB_OUTPUT
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Verify SLSA
+      - name: Get image digest
+        id: digest
         run: |
-          slsa-verifier verify-image ghcr.io/${{ github.repository }}:${{ steps.latest.outputs.tag }} \
-            --source-uri github.com/${{ github.repository }} \
-            --source-tag ${{ steps.latest.outputs.tag }} \
-            --print-provenance
+          DIGEST=$(docker pull ghcr.io/${{ github.repository }}:${{ steps.latest.outputs.tag }} 2>&1 | grep "Digest:" | cut -d' ' -f2)
+          echo "digest=$DIGEST" >> $GITHUB_OUTPUT
 
+      - name: Verify SLSA with GitHub Attestations
+        run: |
+          gh attestation verify oci://ghcr.io/${{ github.repository }}@${{ steps.digest.outputs.digest }} \
+            --owner ${{ github.repository_owner }}
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Report status
         if: always()
         run: |
