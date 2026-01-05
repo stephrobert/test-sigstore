@@ -3,7 +3,7 @@
 # =============================================================================
 # Stage 1 : Builder - Installer les dépendances dans un venv
 # =============================================================================
-FROM python:3.14-slim@sha256:2751cbe93751f0147bc1584be957c6dd4c5f977c3d4e0396b56456a9fd4ed137 AS builder
+FROM python:3.14-slim@sha256:3955a7dd66ccf92b68d0232f7f86d892eaf75255511dc7e98961bdc990dc6c9b AS builder
 
 # Éviter les fichiers .pyc et activer le mode unbuffered
 ENV PYTHONDONTWRITEBYTECODE=1
@@ -24,7 +24,7 @@ RUN pip install --no-cache-dir --require-hashes -r requirements.txt
 # =============================================================================
 # Stage 2 : Production - Image minimale
 # =============================================================================
-FROM python:3.14-slim@sha256:2751cbe93751f0147bc1584be957c6dd4c5f977c3d4e0396b56456a9fd4ed137 AS production
+FROM python:3.14-slim@sha256:3955a7dd66ccf92b68d0232f7f86d892eaf75255511dc7e98961bdc990dc6c9b AS production
 
 # Labels OCI pour la traçabilité (utilisés par Syft pour le SBOM)
 LABEL org.opencontainers.image.source="https://github.com/VOTRE_USER/secure-python-pipeline"
